@@ -11,11 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout jellyfin-server
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository_owner }}/jellyfin
-          path: ../jellyfin
+      - name: Clone jellyfin-server
+        run: git clone https://github.com/${{ github.repository_owner }}/jellyfin.git ../jellyfin --depth 1
 
       - name: Checkout plugin
         uses: actions/checkout@v4
@@ -33,4 +30,3 @@ jobs:
         with:
           name: MetaTube
           path: Jellyfin.Plugin.MetaTube/bin/Jellyfin.MetaTube@*.zip
-            Jellyfin.Plugin.MetaTube/bin/Emby.MetaTube@v${{ steps.shell.outputs.version }}.zip
